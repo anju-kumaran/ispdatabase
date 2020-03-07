@@ -104,7 +104,7 @@ public class StudentTopNavBar {
 
     public GeneralInformationPage clickAddNewStudent(){
         //this.addNewStudent.click();
-        addNewStudent = wait.until(ExpectedConditions.elementToBeClickable(addNewStudent));
+//        addNewStudent = wait.until(ExpectedConditions.elementToBeClickable(addNewStudent));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", addNewStudent);
 

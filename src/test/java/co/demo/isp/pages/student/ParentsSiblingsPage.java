@@ -19,13 +19,10 @@ import static java.lang.Thread.sleep;
 
 public class ParentsSiblingsPage {
     private WebDriver driver;
-    WebDriverWait wait;
+    private WebDriverWait wait;
 
     @FindBy(xpath = "//div[@class='col-md-6 col-sm-6']//legend[text()='Parent 1 Info']")
     private WebElement liveText;
-
-    /*@FindBy(xpath = "//input[@id='globalSearchStudent']")
-    private WebElement globalSearchStudent;*/
 
    // @FindBy(xpath = "//input[@placeholder='First Name' and contains(@ng-model,'Father')]")
     @FindBy(xpath = "//input[@placeholder='First Name']")
@@ -455,7 +452,7 @@ public class ParentsSiblingsPage {
         return this;
     }
     public ParentsSiblingsPage selectEnglish(String speakEnglish){
-       // this.english.sendKeys(speakEnglish);
+
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", english);
         List<WebElement> elements = driver.findElements(By.xpath("//selectize[@placeholder='English ?']/parent::*/child::div/div[2]/div/div"));
         Iterator<WebElement> iterator = elements.iterator();
@@ -598,7 +595,6 @@ public class ParentsSiblingsPage {
     public ParentsSiblingsPage selectParentTwoCountry(String country){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", parentTwoCountry);
-        //List<WebElement> elements = driver.findElements(By.xpath("//div[@class='selectize-dropdown single ng-isolate-scope ng-pristine ng-valid']//div[@class='selectize-dropdown-content']//div"));
         List<WebElement> elements = driver.findElements(By.xpath("//selectize[@placeholder='Country' and contains(@ng-model,'Country2')]/parent::*/child::div/div[2]/div/div"));
         Iterator<WebElement> iterator = elements.iterator();
         while (iterator.hasNext()) {

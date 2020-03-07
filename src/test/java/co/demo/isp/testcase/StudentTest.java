@@ -1,29 +1,33 @@
 package co.demo.isp.testcase;
 
 import co.demo.isp.config.FrameWorkConfig;
+import co.demo.isp.data.LoginData;
 import co.demo.isp.drivermanager.DriverManager;
+import co.demo.isp.listeners.ScreenshotListener;
 import co.demo.isp.pages.HomePage;
 import co.demo.isp.pages.LoginPage;
 import co.demo.isp.pages.UserDashboard;
 import co.demo.isp.pages.student.*;
+import co.demo.isp.reports.ExtentHtmlReport;
+import com.aventstack.extentreports.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 
+@Listeners({ScreenshotListener.class})
 public class StudentTest {
     WebDriver driver;
     WebDriverWait wait;
+    ExtentReports reports;
+    ExtentTest test;
     HomePage homePage;
     LoginPage loginPage;
     UserDashboard userDashboard;
@@ -44,14 +48,21 @@ public class StudentTest {
         driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
     }
 
+    @BeforeTest
+    public void getReports(){
+        reports = ExtentHtmlReport.getReport();
+    }
+
     @Test
     public void testHome(){
         homePage = new HomePage(driver);
         loginPage = homePage.clickBtnUserDashBoard();
     }
 
-    @Test
+    /*@Test
     public void testLogin(){
+        //ExtentReports reports = ExtentHtmlReport.getReport();
+
         logger.info("******************************Login Test Starting***********************************");
         homePage = new HomePage(driver);
         loginPage = homePage.clickBtnUserDashBoard();
@@ -61,7 +72,15 @@ public class StudentTest {
         userDashboard = loginPage.clickBtnLogin(email,password);
         datasheetViewPage = userDashboard.clickStudentsModule();
         logger.info("******************************Login Test End*****************************************");
-    }
+
+        test = reports.createTest("LoginTest");
+        if(datasheetViewPage.getLiveText().getText().equals("Tips:")){
+            test.log(Status.PASS, "LoginTest Passed");
+        }else {
+            test.log(Status.FAIL, "LoginTest Failed");
+        }
+        //ExtentHtmlReport.getReport().flush();
+    }*/
 
    /* @Test
     public void testLogin() throws InterruptedException {
@@ -74,12 +93,39 @@ public class StudentTest {
         logger.info("******************************Login Test End*****************************************");
     }*/
 
+   @Test(dataProvider = "dataFromExcel", dataProviderClass = LoginData.class)
+   public void testLogin(String email, String password){
+       logger.info("******************************Login Data Provider Test Starting***********************************");
+       homePage = new HomePage(driver);
+       loginPage = homePage.clickBtnUserDashBoard();
+       loginPage = new LoginPage(driver);
+       userDashboard = loginPage.clickBtnLogin(email,password);
+       datasheetViewPage = userDashboard.clickStudentsModule();
+       logger.info("******************************Login Data Provider Test Ending*****************************************");
+       test = reports.createTest("LoginTest");
+       if(datasheetViewPage.getLiveText().getText().equals("Tips:")){
+           test.log(Status.PASS, "Login Test Passed");
+       }else {
+           test.log(Status.FAIL, "Login Test Failed");
+       }
+   }
 
     @Test(dependsOnMethods = "testLogin")
-    public void testDatasheetViewPage(){
+    public void testDatasheetViewPage() throws IOException {
+
+        logger.info("******************************Datasheet Test Starting***********************************");
         studentTopNavBar = new StudentTopNavBar(driver);
         datasheetViewPage = studentTopNavBar.clickDatasheetView();
-        Assert.assertEquals("Tips:",datasheetViewPage.getLiveText().getText());
+       // Assert.assertEquals("Tips:",datasheetViewPage.getLiveText().getText());
+        logger.info("******************************Datasheet Test Ending*************************************");
+
+        test = reports.createTest("DatasheetTest");
+        if(datasheetViewPage.getLiveText().getText().equals("Tipss:")){
+            test.log(Status.PASS, "Datasheet Test Passed");
+        }else {
+            test.log(Status.FAIL, "Datasheet Test Failed");
+            test.fail("Failed Because of invalid text", MediaEntityBuilder.createScreenCaptureFromPath("screenshot.png").build());
+        }
     }
 
     @Test(dependsOnMethods = "testLogin")
@@ -91,19 +137,37 @@ public class StudentTest {
     }
 
     @Test(dependsOnMethods = "testLogin")
-    public void testGeneralInfoPage(){
+    public void testGeneralInfoPage() throws IOException {
+        logger.info("******************************GeneralInformationPage Test Star***********************************");
         studentTopNavBar = new StudentTopNavBar(driver);
        // driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
         generalInfoPage = studentTopNavBar.clickAddNewStudent();
-        Assert.assertEquals("General Information",generalInfoPage.getLiveText().getText());
+       // Assert.assertEquals("General Information",generalInfoPage.getLiveText().getText());
+        logger.info("******************************GeneralInformationPage Test End***********************************");
+
+        test = reports.createTest("GeneralInformationTest");
+        if(generalInfoPage.getLiveText().getText().equals("General Information")){
+            test.log(Status.PASS, "GeneralInformationPage Test Passed");
+
+            //test.log(Status.PASS,test.addScreenCapture(capture(driver))+ “Test Failed”);
+        }else {
+            test.log(Status.FAIL, "GeneralInformationPage Test Failed");
+
+           // test.fail("Failed Because of invalid text", MediaEntityBuilder.createScreenCaptureFromPath("screenshot.png").build());
+            String base64Screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
+            MediaEntityModelProvider mediaModel = MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build();
+            test.fail("captured image: ", mediaModel);
+        }
     }
 
    @Test(dependsOnMethods = "testLogin")
    public void testParentsSiblings(){
+       logger.info("******************************ParentsSiblingsPage Test S1tart***********************************");
        studentTopNavBar = new StudentTopNavBar(driver);
        //driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
        parentsSiblingsPage = studentTopNavBar.clickParentsSiblings();
        Assert.assertEquals("Parent 1 Info",parentsSiblingsPage.getLiveText().getText());
+       logger.info("******************************ParentsSiblingsPage Test End***********************************");
    }
 
    @Test(dependsOnMethods = "testLogin")
@@ -114,6 +178,7 @@ public class StudentTest {
        generalInfoPage = studentTopNavBar.clickAddNewStudent();
        //driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
        parentsSiblingsPage = studentTopNavBar.clickParentsSiblings();
+       logger.info(".....Entering parent details....");
        parentsSiblingsPage
                 .keyInParentOneFirstName("Steve")
                 .keyInParentOneLastName("Smith")
@@ -175,6 +240,12 @@ public class StudentTest {
        // sleep(10000);
       // studentTopNavBar.clickSaveStudent();
 
+   }
+
+   @AfterTest
+   public void endReport(){
+
+        ExtentHtmlReport.getReport().flush();
    }
 
     @AfterSuite

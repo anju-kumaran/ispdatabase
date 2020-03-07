@@ -1,7 +1,9 @@
 package co.demo.isp.testcase;
 
 import co.demo.isp.config.FrameWorkConfig;
+import co.demo.isp.data.LoginData;
 import co.demo.isp.drivermanager.DriverManager;
+import co.demo.isp.listeners.ScreenshotListener;
 import co.demo.isp.pages.HomePage;
 import co.demo.isp.pages.LoginPage;
 import co.demo.isp.pages.UserDashboard;
@@ -9,22 +11,27 @@ import co.demo.isp.pages.student.DatasheetViewPage;
 import co.demo.isp.pages.student.GeneralInformationPage;
 import co.demo.isp.pages.student.ParentsSiblingsPage;
 import co.demo.isp.pages.student.StudentTopNavBar;
+import co.demo.isp.reports.ExtentHtmlReport;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 
+@Listeners({ScreenshotListener.class})
 public class ParentsSiblingsTest {
     WebDriver driver;
     WebDriverWait wait;
+    ExtentReports reports;
+    ExtentTest test;
     HomePage homePage;
     LoginPage loginPage;
     UserDashboard userDashboard;
@@ -32,7 +39,7 @@ public class ParentsSiblingsTest {
     StudentTopNavBar studentTopNavBar;
     GeneralInformationPage generalInfoPage;
     ParentsSiblingsPage parentsSiblingsPage;
-   // private final Logger logger = LogManager.getLogger(ParentsSiblingsTest.class);
+    private final Logger logger = LogManager.getLogger(ParentsSiblingsTest.class);
 
     @BeforeSuite
     public void setup(){
@@ -42,35 +49,60 @@ public class ParentsSiblingsTest {
         driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
     }
 
-    @Test
-    public void testLogin(){
+    @BeforeTest
+    public void getReports(){
+
+        reports = ExtentHtmlReport.getReport();
+    }
+
+    @Test(dataProvider = "dataFromExcel", dataProviderClass = LoginData.class, priority = 1)
+    public void testLogin(String email, String password) throws InterruptedException {
+        logger.info("******************************In Home page***********************************");
         homePage = new HomePage(driver);
+        logger.info("******************************In Login page***********************************");
         loginPage = homePage.clickBtnUserDashBoard();
         loginPage = new LoginPage(driver);
-        String email = "training@pragra.co";
-        String password = "Testing2019";
+        logger.info("******************************In Student Menu ***********************************");
         userDashboard = loginPage.clickBtnLogin(email,password);
-        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
+        sleep(5000);
+        logger.info("******************************In datasheet page***********************************");
         datasheetViewPage = userDashboard.clickStudentsModule();
-        driver.manage().timeouts().implicitlyWait(15000, TimeUnit.MILLISECONDS);
+        //driver.manage().timeouts().implicitlyWait(15000, TimeUnit.MILLISECONDS);
+        logger.info("******************************Login Test End*************************************");
+        test = reports.createTest("LoginTest");
+        if(datasheetViewPage.getLiveText().getText().equals("Tips:")){
+            test.log(Status.PASS, "Login Test Passed");
+        }else {
+            test.log(Status.FAIL, "Login Test Failed");
+        }
     }
 
-    @Test(dependsOnMethods = "testLogin")
+    @Test(priority = 2)
     public void testParentsSiblingsPage(){
+        logger.info("************************Parents Siblings Page Test Start********************************");
         studentTopNavBar = new StudentTopNavBar(driver);
-        driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+        generalInfoPage = studentTopNavBar.clickAddNewStudent();
         parentsSiblingsPage = studentTopNavBar.clickParentsSiblings();
-        Assert.assertEquals("Parent 1 Info",parentsSiblingsPage.getLiveText().getText());
+        logger.info("************************Parents Siblings Page Test End********************************");
+        test = reports.createTest("ParentsSiblings Page Test");
+        if(parentsSiblingsPage.getLiveText().getText().equals("Parent 1 Info")){
+            test.log(Status.PASS, "ParentsSiblings Page Test Passed");
+        }else {
+            test.log(Status.FAIL, "ParentsSiblings Page Test Failed");
+        }
     }
 
-    @Test(dependsOnMethods = "testLogin")
+    @Test(dependsOnMethods = "testLogin", priority = 3)
     public void testParentSiblingsForm() throws InterruptedException {
+        logger.info("************************Parents Siblings Form Test Start********************************");
         studentTopNavBar = new StudentTopNavBar(driver);
-        // sleep(2000);
-        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
+        sleep(5000);
+        logger.info(".....Opening GeneralInfo page....");
         generalInfoPage = studentTopNavBar.clickAddNewStudent();
-        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
+       // sleep(5000);
+        logger.info(".....Entering Parents siblings page....");
         parentsSiblingsPage = studentTopNavBar.clickParentsSiblings();
+        logger.info(".....Key in parent details....");
         parentsSiblingsPage
                 .keyInParentOneFirstName("Steve")
                 .keyInParentOneLastName("Smith")
@@ -128,10 +160,21 @@ public class ParentsSiblingsTest {
                 .checkCommunicateFather()
                 .checkCommunicateAgent();
 
-        //
         // sleep(10000);
         // studentTopNavBar.clickSaveStudent();
+        logger.info("************************Parents Siblings Form Test End********************************");
+        test = reports.createTest("ParentsSiblings Form Test");
+        if(parentsSiblingsPage.getLiveText().getText().equals("Parent 1 Info")){
+            test.log(Status.PASS, "ParentsSiblings Form Test Passed");
+        }else {
+            test.log(Status.FAIL, "ParentsSiblings Form Test Failed");
+        }
 
+    }
+
+    @AfterTest
+    public void endReport(){
+        ExtentHtmlReport.getReport().flush();
     }
 
     @AfterSuite

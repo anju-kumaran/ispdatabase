@@ -18,11 +18,11 @@ public class UserDashboard {
 
     public UserDashboard (WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver,50);
+        wait = new WebDriverWait(driver,20);
         PageFactory.initElements(driver,this);
     }
     public DatasheetViewPage clickStudentsModule(){
-        studentTitle = wait.until(ExpectedConditions.elementToBeClickable(studentTitle));
+       // studentTitle = wait.until(ExpectedConditions.elementToBeClickable(studentTitle));
        JavascriptExecutor js = (JavascriptExecutor) driver;
        js.executeScript("arguments[0].click();", studentTitle);
        return new DatasheetViewPage(driver);
