@@ -2,36 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="819de80e-dfb9-4b5a-97f0-a30622ea0937" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/data/ExcelReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/data/LoginData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/listeners/ScreenshotListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/reports/ExtentHtmlReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/util/FrameworkUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/userlogin.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework.log" beforeDir="false" afterPath="$PROJECT_DIR$/framework.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/co/demo/isp/pages/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/pages/HomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/co/demo/isp/pages/UserDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/pages/UserDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/co/demo/isp/pages/student/DatasheetViewPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/pages/student/DatasheetViewPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/co/demo/isp/pages/student/GeneralInformationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/pages/student/GeneralInformationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/co/demo/isp/pages/student/ParentsSiblingsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/pages/student/ParentsSiblingsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/co/demo/isp/pages/student/StudentTopNavBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/pages/student/StudentTopNavBar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/co/demo/isp/testcase/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/testcase/LoginTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/co/demo/isp/testcase/ParentsSiblingsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/testcase/ParentsSiblingsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/co/demo/isp/testcase/StudentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/testcase/StudentTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/framework.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/framework.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/co/demo/isp/pages/HomePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/co/demo/isp/pages/HomePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/co/demo/isp/pages/UserDashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/co/demo/isp/pages/UserDashboard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/co/demo/isp/pages/student/DatasheetViewPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/co/demo/isp/pages/student/DatasheetViewPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/co/demo/isp/pages/student/GeneralInformationPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/co/demo/isp/pages/student/GeneralInformationPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/co/demo/isp/pages/student/ParentsSiblingsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/co/demo/isp/pages/student/ParentsSiblingsPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/co/demo/isp/pages/student/StudentTopNavBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/co/demo/isp/pages/student/StudentTopNavBar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/co/demo/isp/testcase/LoginTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/co/demo/isp/testcase/LoginTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/co/demo/isp/testcase/ParentsSiblingsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/co/demo/isp/testcase/ParentsSiblingsTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/co/demo/isp/testcase/StudentTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/co/demo/isp/testcase/StudentTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/framework.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/framework.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

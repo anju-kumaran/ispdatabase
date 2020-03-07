@@ -56,7 +56,7 @@ public class LoginTest {
     @Test(dataProvider = "dataFromExcel", dataProviderClass = LoginData.class)
     public void testLogin(String email, String password) throws IOException {
 
-        logger.info("******************************Login Data Provider Test Starting***********************************");
+        logger.info("******************************Login Data Provider Test Starting*********************************");
         homePage = new HomePage(driver);
         loginPage = homePage.clickBtnUserDashBoard();
         loginPage = new LoginPage(driver);
