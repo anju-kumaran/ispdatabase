@@ -13,9 +13,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class FrameworkUtils {
     private static String dateFormat = "ddMMyyyyHHmm";
+    private static HashMap<String,String> screenShotTestMap = new HashMap<>();
+    public static String getScreenShotLocation(String testName){
+        return screenShotTestMap.get(testName);
+    }
 
     // Pass screenshots goes in dir
     // target/screenshot/pass
@@ -60,9 +65,12 @@ public class FrameworkUtils {
             if(pass){
                 Path passFilePath = Paths.get(FrameWorkConfig.getProperty("screenshot.pass.dir"),fileName);
                 Files.copy(new FileInputStream(memoryScreenShot),passFilePath);
+                screenShotTestMap.put(testName,passFilePath.toString());
             }else {
                 Path passFilePath = Paths.get(FrameWorkConfig.getProperty("screenshot.fail.dir"),fileName);
                 Files.copy(new FileInputStream(memoryScreenShot),passFilePath);
+                //screenShotTestMap.put(testName,passFilePath.toAbsolutePath().toString());
+                screenShotTestMap.put(testName,passFilePath.toString());
             }
         }catch (IOException e) {
             e.printStackTrace();

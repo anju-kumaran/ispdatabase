@@ -434,3 +434,26 @@
 2020-03-07 09:33:57.535 [main] INFO  co.demo.isp.testcase.ParentsSiblingsTest - .....Entering Parents siblings page....
 2020-03-07 09:33:58.302 [main] INFO  co.demo.isp.testcase.ParentsSiblingsTest - .....Key in parent details....
 2020-03-07 09:34:24.854 [main] INFO  co.demo.isp.testcase.ParentsSiblingsTest - ************************Parents Siblings Form Test End********************************
+2020-03-07 12:26:12.772 [main] INFO  co.demo.isp.testcase.StudentTest - ***Entering URL***
+2020-03-07 12:26:15.008 [main] INFO  co.demo.isp.testcase.StudentTest - ******************************Login Data Provider Test Starting*********************************
+2020-03-07 12:26:19.408 [main] INFO  co.demo.isp.testcase.StudentTest - ******************************Login Data Provider Test Ending*****************************************
+2020-03-07 13:06:37.672 [main] INFO  co.demo.isp.testcase.StudentTest - ***Entering URL***
+2020-03-07 13:06:39.944 [main] INFO  co.demo.isp.testcase.StudentTest - ******************************Login Data Provider Test Starting*********************************
+2020-03-07 13:09:19.388 [main] INFO  co.demo.isp.testcase.StudentTest - ***Entering URL***
+2020-03-07 13:09:21.852 [main] INFO  co.demo.isp.testcase.StudentTest - ******************************Login Data Provider Test Starting*********************************
+2020-03-07 13:11:49.641 [main] INFO  co.demo.isp.testcase.StudentTest - ***Entering URL***
+2020-03-07 13:11:52.071 [main] INFO  co.demo.isp.testcase.StudentTest - ******************************Login Data Provider Test Starting*********************************
+2020-03-07 13:33:07.607 [main] INFO  co.demo.isp.testcase.StudentTest - ***Entering URL***
+2020-03-07 13:33:09.924 [main] INFO  co.demo.isp.testcase.StudentTest - ******************************Login Data Provider Test Starting*********************************
+2020-03-07 13:35:44.428 [main] INFO  co.demo.isp.testcase.StudentTest - ***Entering URL***
+2020-03-07 13:35:46.662 [main] INFO  co.demo.isp.testcase.StudentTest - ******************************Login Data Provider Test Starting*********************************
+2020-03-07 13:42:52.564 [main] INFO  co.demo.isp.testcase.StudentTest - ***Entering URL***
+2020-03-07 13:42:54.830 [main] INFO  co.demo.isp.testcase.StudentTest - ******************************Login Data Provider Test Starting*********************************
+2020-03-09 11:58:26.492 [main] INFO  co.demo.isp.testcase.ParentsSiblingsTest - ************************Parents Siblings Page Test Start********************************
+2020-03-09 11:59:08.434 [main] INFO  co.demo.isp.testcase.ParentsSiblingsTest - ******************************In Home page***********************************
+2020-03-09 11:59:08.506 [main] INFO  co.demo.isp.testcase.ParentsSiblingsTest - ******************************In Login page***********************************
+2020-03-09 11:59:09.501 [main] INFO  co.demo.isp.testcase.ParentsSiblingsTest - ******************************In Student Menu ***********************************
+2020-03-09 11:59:16.776 [main] INFO  co.demo.isp.testcase.ParentsSiblingsTest - ******************************In datasheet page***********************************
+2020-03-09 11:59:16.887 [main] INFO  co.demo.isp.testcase.ParentsSiblingsTest - ******************************Login Test End*************************************
+2020-03-09 12:00:44.808 [main] INFO  co.demo.isp.testcase.StudentTest - ***Entering URL***
+2020-03-09 12:00:47.053 [main] INFO  co.demo.isp.testcase.StudentTest - ******************************Login Data Provider Test Starting*********************************

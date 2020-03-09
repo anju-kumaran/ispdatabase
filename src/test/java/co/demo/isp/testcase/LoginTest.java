@@ -18,6 +18,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -60,17 +61,17 @@ public class LoginTest {
         homePage = new HomePage(driver);
         loginPage = homePage.clickBtnUserDashBoard();
         loginPage = new LoginPage(driver);
-        userDashboard = loginPage.clickBtnLogin(email,password);
+        //userDashboard = loginPage.clickBtnLogin(email,password);
+        String emails = "abc@gg.com";
+        userDashboard = loginPage.clickBtnLogin(emails,password);
         datasheetViewPage = userDashboard.clickStudentsModule();
         logger.info("******************************Login Data Provider Test Ending*****************************************");
         test = reports.createTest("LoginTest");
         if(datasheetViewPage.getLiveText().getText().equals("Tips:")){
-            test.log(Status.PASS, "Login Test Passed");
-
-           // test.log(Status.PASS, "Login Test Passed. "+test.addScreenCaptureFromPath("target/screenshot/fail/testLogin_060320201828582.png"));
-
+            test.log(Status.PASS, "Login Test Passed......");
         }else {
-            test.log(Status.FAIL, "Login Test Failed");
+
+            test.log(Status.FAIL, "Login Test Failed.....");
             //test.log(Status.FAIL, "Login Test Failed due to some reason "+test.addScreenCaptureFromPath("/target/screenshot/fail/testLogin_060320201828582.png"));
         }
     }
@@ -80,6 +81,15 @@ public class LoginTest {
 
         ExtentHtmlReport.getReport().flush();
     }
+  /* @AfterTest
+   public void endReport(ITestResult result) throws IOException {
+       if(result.getStatus() == ITestResult.FAILURE){
+           FrameworkUtils.captureScreenShot(DriverManager.getDriver(),result.getName(),false);
+           //test.log(Status.FAIL,"Failed due to some reason").addScreenCaptureFromPath(FrameworkUtils.getScreenShotLocation(result.getName()));
+           test.addScreenCaptureFromPath(FrameworkUtils.getScreenShotLocation(result.getName()));
+       }
+       ExtentHtmlReport.getReport().flush();
+   }*/
 
     @AfterSuite
     public void tearDown() throws InterruptedException {
