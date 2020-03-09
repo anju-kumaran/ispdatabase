@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="819de80e-dfb9-4b5a-97f0-a30622ea0937" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework.log" beforeDir="false" afterPath="$PROJECT_DIR$/framework.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/co/demo/isp/testcase/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/testcase/LoginTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/co/demo/isp/util/FrameworkUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/demo/isp/util/FrameworkUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/co/demo/isp/testcase/LoginTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/co/demo/isp/testcase/LoginTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/co/demo/isp/util/FrameworkUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/co/demo/isp/util/FrameworkUtils.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
